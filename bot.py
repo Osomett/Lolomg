@@ -315,37 +315,7 @@ async def kick(ctx,user:discord.Member):
         return
 
 @client.command(pass_context = True)
-async def join(ctx):
-    channel = ctx.message.author.voice.voice_channel
-    embed = discord.Embed(
-        title = 'Voice channel',
-        description = 'commands for the voice channel.',
-        colour = discord.Colour.blue()
-    )
 
-    embed.add_field(name = '!play', value = 'play youtube audio with url', inline = False)
-    embed.add_field(name = '!pause', value = 'pauses audio', inline = False)
-    embed.add_field(name = '!resume', value = 'resumes audio', inline = False)
-    embed.add_field(name = '!leave', value = 'leave voice channel', inline = False)
-
-    await client.say(embed=embed)
-    await client.join_voice_channel(channel)
-
-#command for bot to leave voice channel and discorp.py is requried for thos to work
-@client.command(pass_context = True)
-async def leave(ctx):
-    server = ctx.message.server
-    voice_client = client.voice_client_in(server)
-    await voice_client.disconnect()
-
-#install youtube_dl and ffmpeg to play video using irl
-@client.command(pass_context = True)
-async def play(ctx, url):
-    server = ctx.message.server
-    voice_client = client.voice_client_in(server)
-    player = await voice_client.create_ytdl_player(url)
-    players[server.id] = player
-    player.start()
 
 @client.command(pass_context = True)
 @commands.has_permissions(manage_messages=True)  
